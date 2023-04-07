@@ -65,7 +65,8 @@ public class MonsterController : Controller
     [HttpPut("/Monsters/{id}", Name = "Update Monster")]
     public async Task<ActionResult> UpdateMonster(Monster monster, int id)
     {
-        var oldMonster = await _context.Monsters.FirstOrDefaultAsync(m => m.Id == 1);
+        var oldMonster = await _context.Monsters.Include(m => m.Actions)
+                                                       .FirstOrDefaultAsync(m => m.Id == id);
         
         if (oldMonster is null) return NotFound();
 
@@ -80,7 +81,7 @@ public class MonsterController : Controller
         deletedActions.ForEach(i => _context.Database
                        .GetDbConnection()
                        .Execute("sp_Delete_Action",
-                       new { @ActionId = i },
+                       new { @Id = i },
                        commandType: CommandType.StoredProcedure));
         
         monster.Actions.Where(a => a.Id != 0)
@@ -102,7 +103,7 @@ public class MonsterController : Controller
                        .Execute("sp_Insert_Action",
                        new
                        {
-                           @MonsterId = a.Id,
+                           @MonsterId = id,
                            @Name = a.Name,
                            @Description = a.Description
                        },
