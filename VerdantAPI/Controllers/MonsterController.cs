@@ -26,7 +26,7 @@ public class MonsterController : Controller
 
         monsters.ForEach(m => m.DamageWeaknesses = 
                          _context.Database.GetDbConnection().Query<DamageType>
-                         ("sp_Get_Monster_Weaknesses", new { @Id = m.Id }, commandType: CommandType.StoredProcedure)
+                         ("sp_Get_Monster_Weaknesses", new { m.Id }, commandType: CommandType.StoredProcedure)
                         .ToList());
 
         return monsters;
@@ -90,10 +90,10 @@ public class MonsterController : Controller
                        .GetDbConnection()
                        .Execute("sp_Update_Action", 
                        new{ 
-                           @Id = a.Id,
+                           a.Id,
                            @MonsterId = id, 
-                           @Name = a.Name,
-                           @Description = a.Description}, 
+                           a.Name,
+                           a.Description}, 
                        commandType: CommandType.StoredProcedure));
         
         monster.Actions.Where(a => a.Id == 0)
@@ -104,8 +104,8 @@ public class MonsterController : Controller
                        new
                        {
                            @MonsterId = id,
-                           @Name = a.Name,
-                           @Description = a.Description
+                           a.Name,
+                           a.Description
                        },
                        commandType: CommandType.StoredProcedure));
 
@@ -116,12 +116,12 @@ public class MonsterController : Controller
                                 @Id = id,
                                 @MonsterName = monster.Name,
                                 @MonsterDescription = monster.Description,
-                                @Strength = monster.Stats.Strength,
-                                @Dexterity = monster.Stats.Dexterity,
-                                @Constitution = monster.Stats.Constitution,
-                                @Intelligence= monster.Stats.Intelligence,
-                                @Wisdom = monster.Stats.Wisdom,
-                                @Charisma = monster.Stats.Charisma
+                                monster.Stats.Strength,
+                                monster.Stats.Dexterity,
+                                monster.Stats.Constitution,
+                                monster.Stats.Intelligence,
+                                monster.Stats.Wisdom,
+                                monster.Stats.Charisma
                           },
                           commandType: CommandType.StoredProcedure);
         

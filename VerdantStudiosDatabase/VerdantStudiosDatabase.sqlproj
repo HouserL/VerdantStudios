@@ -67,8 +67,6 @@
     <Build Include="Tables\DamageTypes.sql" />
     <Build Include="Tables\Monster_DamageType_Weaknesses.sql" />
     <Build Include="Tables\Stats.sql" />
-    <Build Include="Database Triggers\UpdateMonsterWeakness.sql" />
-    <Build Include="Database Triggers\DeleteDamateType.sql" />
     <Build Include="Tables\StandardActions.sql" />
     <Build Include="Stored Procedures\sp_Get_Monster_Weaknesses.sql" />
     <Build Include="Stored Procedures\sp_Get_All_Monster_Weakness.sql" />
