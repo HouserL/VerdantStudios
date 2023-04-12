@@ -8,5 +8,5 @@
 	[Wisdom] INT NOT NULL,
 	[Charisma] INT NOT NULL,
 
-	CONSTRAINT [FK_Monsters_Stats_StatsId] FOREIGN KEY ([Id]) REFERENCES [dbo].[Monsters] (Id) ON DELETE CASCADE
+	CONSTRAINT [FK_Monsters_Stats_Id] FOREIGN KEY ([Id]) REFERENCES [dbo].[Monsters] (Id) ON DELETE CASCADE
 )

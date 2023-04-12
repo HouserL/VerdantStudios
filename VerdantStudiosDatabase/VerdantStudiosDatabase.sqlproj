@@ -9,8 +9,7 @@
     <ProjectGuid>{04ede1eb-c212-4a44-aac6-538fbc0bc23a}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>VerdantStudiosDatabase</RootNamespace>
     <AssemblyName>VerdantStudiosDatabase</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
@@ -48,7 +47,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -59,6 +57,7 @@
     <Folder Include="Stored Procedures" />
     <Folder Include="Tables" />
     <Folder Include="Database Triggers" />
+    <Folder Include="Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Stored Procedures\sp_Get_All_Monsters.sql" />
@@ -76,6 +75,12 @@
     <Build Include="Stored Procedures\sp_Insert_Action.sql" />
     <Build Include="Stored Procedures\sp_Update_Action.sql" />
     <Build Include="Stored Procedures\sp_Delete_Action.sql" />
+    <Build Include="Types\udt_Monster.sql" />
+    <Build Include="Types\udt_Action.sql" />
+    <Build Include="Stored Procedures\sp_Get_Monster_Stats_By_Id.sql" />
+    <Build Include="Stored Procedures\sp_Get_All_Monster_Full.sql" />
+    <Build Include="Stored Procedures\sp_Delete_MDTW_Monsters.sql" />
+    <Build Include="Stored Procedures\sp_Get_StandardActions_By_Id.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VerdantStudiosDatabase.publish.xml" />

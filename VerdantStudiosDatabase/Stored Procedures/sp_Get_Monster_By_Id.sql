@@ -10,4 +10,3 @@ AS
 	FROM DamageTypes dt JOIN Monster_DamageType_Weaknesses mdw 
 	ON dt.Id = mdw.DamageTypeId 
 	WHERE MonsterId = @Id
-RETURN 0

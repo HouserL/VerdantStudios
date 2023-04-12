@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VerdantAPI.Library.Context;
 
@@ -11,9 +12,11 @@ using VerdantAPI.Library.Context;
 namespace VerdantAPI.Library.Migrations
 {
     [DbContext(typeof(MonsterDBContext))]
-    partial class MonsterContextModelSnapshot : ModelSnapshot
+    [Migration("20230411171808_testa")]
+    partial class testa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,12 @@ namespace VerdantAPI.Library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StatsId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StatsId");
 
                     b.ToTable("Monsters");
                 });
@@ -98,8 +106,10 @@ namespace VerdantAPI.Library.Migrations
             modelBuilder.Entity("VerdantAPI.Library.Models.Stats", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Charisma")
                         .HasColumnType("int");
@@ -118,9 +128,10 @@ namespace VerdantAPI.Library.Migrations
 
                     b.Property<int>("Wisdom")
                         .HasColumnType("int");
-                    
+
                     b.HasKey("Id");
 
+                    b.ToTable("Stats");
                 });
 
             modelBuilder.Entity("VerdantAPI.Library.Models.DamageType", b =>
@@ -133,8 +144,8 @@ namespace VerdantAPI.Library.Migrations
             modelBuilder.Entity("VerdantAPI.Library.Models.Monster", b =>
                 {
                     b.HasOne("VerdantAPI.Library.Models.Stats", "Stats")
-                        .WithOne()
-                        .HasForeignKey("Id")
+                        .WithMany()
+                        .HasForeignKey("StatsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
