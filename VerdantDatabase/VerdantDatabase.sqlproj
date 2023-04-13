@@ -82,7 +82,8 @@
     <Build Include="Stored Procedures\sp_Delete_MDTW_Monsters.sql" />
     <Build Include="Stored Procedures\sp_Get_StandardActions_By_Id.sql" />
     <Build Include="Stored Procedures\sp_Get_All_Monsters_Full.sql" />
-    <Build Include="Database Triggers\Trigger1.sql" />
+    <Build Include="Database Triggers\trg_Monsters_Updated.sql" />
+    <Build Include="Database Triggers\trg_Damage_Type_Deleted.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VerdantStudiosDatabase.publish.xml" />
