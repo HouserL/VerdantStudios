@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VerdantStuidosAPI.Library\VerdantAPI.Library.csproj" />
+    <ProjectReference Include="..\VerdantAPI.Library\VerdantAPI.Library.csproj" />
   </ItemGroup>
 
 </Project>

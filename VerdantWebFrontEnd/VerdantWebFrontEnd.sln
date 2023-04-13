@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerdantWebFrontEnd", "VerdantWebFrontEnd.csproj", "{908CFB71-E968-4B0C-8177-D3AE9DC19E22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{908CFB71-E968-4B0C-8177-D3AE9DC19E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908CFB71-E968-4B0C-8177-D3AE9DC19E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908CFB71-E968-4B0C-8177-D3AE9DC19E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908CFB71-E968-4B0C-8177-D3AE9DC19E22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52512001-F336-464F-A5C3-97453A0CE0E7}
+	EndGlobalSection
+EndGlobal

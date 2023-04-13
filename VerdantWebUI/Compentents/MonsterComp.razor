@@ -1,0 +1,58 @@
+﻿@page "/Monsters/{Id}"
+@inject HttpClient httpclient
+@inject NavigationManager navManager
+@inject IConfiguration Config
+@using VerdantWebUI.Library.Models;
+
+<h1>@monster.Name</h1>
+<div>
+STR: @monster.Stats.Strength  CON: @monster.Stats.Constitution
+</div>
+<div>
+    <div>
+        @for (int i = 0; i < monster.DamageWeaknesses.Count; i++)
+        {
+            @if (i == monster.DamageWeaknesses.Count - 1)
+            {
+                <div>
+                    @monster.DamageWeaknesses[i].Name
+                </div>
+                break;
+            }
+            <div>
+                @monster.DamageWeaknesses[i].Name, 
+            </div>
+        }
+    </div>
+    <h3>Actions</h3>
+    @foreach (var Action in monster.Actions)
+    {
+        <h4>@Action.Name </h4>
+        <div>
+        @Action.Description
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = string.Empty;
+
+    private Monster monster { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        monster = await GetMonster();
+    }
+
+    private async Task<Monster> GetMonster()
+    {
+       
+        var response = await httpclient.GetAsync($"Https://localhost:7293/Monsters{Id}");
+        response.EnsureSuccessStatusCode();
+
+        var _monster = await response.Content.ReadFromJsonAsync<Monster>();
+        return _monster;
+    }
+
+}

@@ -1,0 +1,50 @@
+﻿@page "/Monsters"
+@inject HttpClient httpclient
+@using VerdantWebUI.Compentents
+@using VerdantWebUI.Library.Models
+
+<h1>Monsters</h1>
+
+<div>
+    @if (_monsters != null)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Monster</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var monster in _monsters)
+                {
+                    <tr>
+                        <td><a href="/monsters/@monster.Id" >@monster.Name </a></td>
+                        <td>@monster.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Loading monster data...</p>
+    }
+</div>
+
+@code {
+    private IEnumerable<Monster> _monsters;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _monsters = await GetMonsters();
+    }
+    private async Task<IEnumerable<Monster>> GetMonsters()
+    {
+        var response = await httpclient.GetAsync("Https://localhost:7293/Monsters");
+        response.EnsureSuccessStatusCode();
+
+        var monsters = await response.Content.ReadFromJsonAsync<IEnumerable<Monster>>();
+        return monsters;
+    }
+}

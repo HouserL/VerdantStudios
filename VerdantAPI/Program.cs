@@ -10,7 +10,12 @@ namespace VerdantAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddCors(policy =>
+            policy.AddPolicy("OpenCorsPolicy", opt =>
+                opt.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            ));
             builder.Services.AddControllers();
             builder.Services.AddDbContext<MonsterDBContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("MonsterDatabase")));
@@ -28,7 +33,7 @@ namespace VerdantAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("OpenCorsPolicy");
             app.UseAuthorization();
 
 

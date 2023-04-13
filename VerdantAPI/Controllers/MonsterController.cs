@@ -46,7 +46,7 @@ public class MonsterController : Controller
                         .ToList());
 
 
-        return monsters;
+        return Ok(monsters);
     }
    
     [HttpGet("/Monsters/{id}", Name = "Get Monster By Id")]
@@ -80,7 +80,7 @@ public class MonsterController : Controller
                                     new { @Id = id }, commandType: CommandType.StoredProcedure)
                                     .ToList();
 
-        return monster;
+        return Ok(monster);
     }
     
     [HttpPost("/Monsters", Name = "Create Monster")]
